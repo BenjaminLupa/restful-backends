@@ -1,0 +1,51 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+header {
+  margin-top: 10px;
+  margin-inline: auto;
+  display: flex;
+  width: 600px;
+  height: 60px;
+  background-color: rgb(32, 92, 92);
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: 10px;
+  border-radius: 8px 8px 0 0;
+}
+
+main {
+  margin-inline: auto;
+  width: 600px;
+  height: 250px;
+  padding-inline: 30px;
+  background-color: rgb(113, 120, 113);
+  border-radius: 0 0 8px 8px;
+}
+
+ol {
+  padding-top: 20px;
+  color: rgb(218, 213, 147);
+}
+
+li + li {
+  margin-top: 15px;
+}
+
+ol + p {
+  margin-top: 10px;
+}
+
+h1 {
+  color: bisque;
+}
+
+button {
+  background-color: bisque;
+  color: rgb(32, 92, 92);
+  padding: 4px;
+  font-weight: bold;
+}
