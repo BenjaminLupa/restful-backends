@@ -18,17 +18,18 @@ function loadContact() {
 }
 
 function renderProfileContact() {
-  profiles.forEach((el) => {
-    renderContact(el);
+  profiles.forEach((el, index) => {
+    renderContact(el, index);
   });
 }
 
-function renderContact(el) {
+function renderContact(el, index) {
   const newDiv = document.createElement("div");
   newDiv.classList = "container";
   const newFullname = document.createElement("h2");
   const newJob = document.createElement("p");
   newJob.classList = "color";
+  newDiv.dataset.index = index;
 
   const newConnections = document.createElement("p");
   const newConnectionsValue = document.createTextNode(
@@ -55,8 +56,9 @@ function renderContact(el) {
   delBtn.classList = "del-btn";
 
   delBtn.addEventListener("click", (el) => {
-    el.target.parentNode.remove();
-    console.dir(el.target);
+    contacts.innerText = "";
+    profiles.splice(index, 1);
+
     if (el.target.parentNode.lastChild.innerText === "Pending") {
       pendings--;
     }
@@ -73,20 +75,22 @@ function renderContact(el) {
       })
       .then((data) => {
         profiles.push(...data);
-        renderContact(...data);
+        renderProfileContact();
       });
   });
   const name = document.createTextNode(el.name.first + " " + el.name.last);
   const jobName = document.createTextNode(el.title);
   newJob.appendChild(jobName);
   newFullname.appendChild(name);
-  newDiv.appendChild(backgroundPic);
-  newDiv.appendChild(picture);
-  newDiv.appendChild(delBtn);
-  newDiv.appendChild(newFullname);
-  newDiv.appendChild(newJob);
-  newDiv.appendChild(newConnections);
-  newDiv.appendChild(connectBtn);
+  newDiv.append(
+    backgroundPic,
+    picture,
+    delBtn,
+    newFullname,
+    newJob,
+    newConnections,
+    connectBtn
+  );
   newDiv.style.setProperty("--background-img", "url(" + el.backgroundImage) +
     ")";
   contacts.appendChild(newDiv);
